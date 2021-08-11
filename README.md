@@ -2,6 +2,13 @@
 
 Chat app with firebase
 
+current progress:
+
+Sign Up Screen
+
+![image](https://user-images.githubusercontent.com/75542933/129089410-261ebde6-b970-49f7-8f77-5445d3ab17d9.png)
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
