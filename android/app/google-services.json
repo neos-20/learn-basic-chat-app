@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "848576581782",
+    "project_id": "neoschatapp",
+    "storage_bucket": "neoschatapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:848576581782:android:911a7922ae80740237f2b7",
+        "android_client_info": {
+          "package_name": "com.example.simple_chat_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "848576581782-vj0cidr49kcifd4e0df4pmuuoch4c5no.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVtIIAxAyMIgC7PUUNCpmQAeDKDhXutwA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "848576581782-vj0cidr49kcifd4e0df4pmuuoch4c5no.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
