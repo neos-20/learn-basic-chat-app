@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:simple_chat_app/services/google_sign_in.dart';
 import 'package:simple_chat_app/widgets/widgets.dart';
 
 class SignUp extends StatefulWidget {
@@ -9,6 +11,11 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+
+  TextEditingController userNameController = new TextEditingController();
+  TextEditingController emailController = new TextEditingController();
+  TextEditingController passwordController = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(backgroundColor: Colors.transparent,
@@ -26,14 +33,17 @@ class _SignUpState extends State<SignUp> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextField(
+                    controller: userNameController,
                       style: inputTextStyle(),
                       decoration: textFieldDecoration("username")
                   ),
                   TextField(
+                    controller: emailController,
                       style: inputTextStyle(),
                       decoration: textFieldDecoration("email")
                   ),
                   TextField(
+                    controller: passwordController,
                       obscureText: true,
                       style: inputTextStyle(),
                       decoration: textFieldDecoration("password")
@@ -67,30 +77,36 @@ class _SignUpState extends State<SignUp> {
                     ),),
                   ),
                   SizedBox(height: 16,),
-                  Container(
-                    alignment: Alignment.center,
-                    width: MediaQuery.of(context).size.width,
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          colors: [
-                            const Color(0xffa740d6),
-                            const Color(0xffd64086),
-                          ]
+                  GestureDetector(
+                    onTap: (){
+                      final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
+                      provider.googleLogIn();
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: MediaQuery.of(context).size.width,
+                      padding: EdgeInsets.symmetric(vertical: 20),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            colors: [
+                              const Color(0xffa740d6),
+                              const Color(0xffd64086),
+                            ]
+                        ),
+                        borderRadius: BorderRadius.circular(30),
                       ),
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text('Sign Up with ', style: TextStyle(
-                          color: Colors.white70,
-                          fontSize: 17,
-                        ),
-                        ),
-                        Image.network('http://pngimg.com/uploads/google/google_PNG19635.png',height: 20,),
-                      ],
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text('Sign Up with ', style: TextStyle(
+                            color: Colors.white70,
+                            fontSize: 17,
+                          ),
+                          ),
+                          Image.network('http://pngimg.com/uploads/google/google_PNG19635.png',height: 20,),
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(height: 16,),
