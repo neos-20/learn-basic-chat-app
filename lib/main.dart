@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:simple_chat_app/screens/homepage.dart';
 //import 'package:simple_chat_app/screens/signin.dart';
-import 'package:simple_chat_app/screens/signup.dart';
+//import 'package:simple_chat_app/screens/signup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:simple_chat_app/services/google_sign_in.dart';
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: SignUp(),
+        home: HomePage(),
       ),
   );
 }

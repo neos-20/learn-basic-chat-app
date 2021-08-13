@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:simple_chat_app/screens/chatRooms.dart';
 import 'package:simple_chat_app/services/google_sign_in.dart';
 import 'package:simple_chat_app/widgets/widgets.dart';
 
@@ -11,10 +13,8 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-
-  TextEditingController userNameController = new TextEditingController();
-  TextEditingController emailController = new TextEditingController();
-  TextEditingController passwordController = new TextEditingController();
+  String _email = '', _password = '';
+  final auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -32,55 +32,38 @@ class _SignUpState extends State<SignUp> {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  TextField(
-                    controller: userNameController,
+                  /*TextField(
                       style: inputTextStyle(),
-                      decoration: textFieldDecoration("username")
+                      decoration: textFieldDecoration("username"),
+                  ),*/
+                  TextField(
+                      keyboardType: TextInputType.emailAddress,
+                      style: inputTextStyle(),
+                      decoration: textFieldDecoration("email"),
+                    onChanged: (value) {
+                        setState(() {
+                          _email = value.trim();
+                        });
+                    }
                   ),
                   TextField(
-                    controller: emailController,
-                      style: inputTextStyle(),
-                      decoration: textFieldDecoration("email")
-                  ),
-                  TextField(
-                    controller: passwordController,
                       obscureText: true,
                       style: inputTextStyle(),
-                      decoration: textFieldDecoration("password")
+                      decoration: textFieldDecoration("password"),
+                      onChanged: (value) {
+                        setState(() {
+                        _password = value.trim();
+                        });
+                    }
                   ),
                   SizedBox(height: 8,),
-                  Container(
-
-                    alignment: Alignment.centerRight,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                      child: Text('Forgot Password ?', style: inputTextStyle(),),
-                    ),
-                  ),
-                  SizedBox(height: 8,),
-                  Container(
-                    alignment: Alignment.center,
-                    width: MediaQuery.of(context).size.width,
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          colors: [
-                            const Color(0xffa740d6),
-                            const Color(0xffd64086),
-                          ]
-                      ),
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: Text('Sign Up', style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 17,
-                    ),),
-                  ),
-                  SizedBox(height: 16,),
                   GestureDetector(
                     onTap: (){
-                      final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
-                      provider.googleLogIn();
+                      auth.createUserWithEmailAndPassword(email: _email, password: _password,);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ChatRoom()),
+                      );
                     },
                     child: Container(
                       alignment: Alignment.center,
@@ -95,57 +78,11 @@ class _SignUpState extends State<SignUp> {
                         ),
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text('Sign Up with ', style: TextStyle(
-                            color: Colors.white70,
-                            fontSize: 17,
-                          ),
-                          ),
-                          Image.network('http://pngimg.com/uploads/google/google_PNG19635.png',height: 20,),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 16,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text('Already have an account. ', style: TextStyle(
+                      child: Text('Sign Up', style: TextStyle(
                         color: Colors.white70,
-                        fontSize: 15,),
-                      ),
-                      Text('Log In', style: TextStyle(
-                        color: Colors.white70,
-                        fontSize: 15,
-                        decoration: TextDecoration.underline,
+                        fontSize: 17,
                       ),),
-                    ],
-                    // SIGN UP WITH GITHUB BEGIN:
-                    /*  SizedBox(height: 16,),
-                  Container(
-                    alignment: Alignment.center,
-                    width: MediaQuery.of(context).size.width,
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          colors: [
-                            const Color(0xffa740d6),
-                            const Color(0xffd64086),
-                          ]
-                      ),
-                      borderRadius: BorderRadius.circular(30),
                     ),
-                    child: Text('Sign Up with Github', style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 17,
-                    ),),
-                  ),*/
-                    // SIGN UP WITH GITHUB END:
-
                   ),
                 ]
             ),
