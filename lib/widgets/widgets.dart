@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 PreferredSizeWidget appBarMain(BuildContext context){
   return AppBar(
-    title: Center(child: Text('TODO'),),
+    title: Center(
+      child: Row(
+        children: [
+          Flexible(child: Image.asset("assets/images/neos.jpg", height: 20, width: 20,)),
+          Text('TODO'),
+        ],
+      ),
+    ),
     flexibleSpace: Container(
       decoration: new BoxDecoration(
         gradient: new LinearGradient(
