@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:simple_chat_app/screens/chatRooms.dart';
 import 'package:simple_chat_app/screens/signin.dart';
 import 'package:simple_chat_app/screens/signup.dart';
 import 'package:simple_chat_app/services/google_sign_in.dart';
@@ -14,6 +15,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  bool isLoading = false;
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(backgroundColor: Colors.transparent,
@@ -24,8 +30,9 @@ class _HomePageState extends State<HomePage> {
                 gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [const Color(0xFF4840d6),
-                      const Color(0xFFa740d6),])),
+                    colors: [const Color(0xFF411d73),
+                      const Color(0xFF012340),
+                      const Color(0xFF0d0d0d)])),
             padding: EdgeInsets.symmetric(horizontal: 24),
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -44,8 +51,8 @@ class _HomePageState extends State<HomePage> {
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                             colors: [
-                              const Color(0xffa740d6),
                               const Color(0xffd64086),
+                              const Color(0xffa740d6),
                             ]
                         ),
                         borderRadius: BorderRadius.circular(30),
@@ -72,8 +79,8 @@ class _HomePageState extends State<HomePage> {
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                           colors: [
-                            const Color(0xffa740d6),
                             const Color(0xffd64086),
+                            const Color(0xffa740d6),
                           ]
                       ),
                       borderRadius: BorderRadius.circular(30),
@@ -96,6 +103,10 @@ class _HomePageState extends State<HomePage> {
                     onTap: (){
                       final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
                       provider.googleLogIn();
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => ChatRoom()),
+                      );
                     },
                     child: Container(
                       alignment: Alignment.center,
@@ -104,8 +115,8 @@ class _HomePageState extends State<HomePage> {
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                             colors: [
-                              const Color(0xffa740d6),
                               const Color(0xffd64086),
+                              const Color(0xffa740d6),
                             ]
                         ),
                         borderRadius: BorderRadius.circular(30),
@@ -132,8 +143,8 @@ class _HomePageState extends State<HomePage> {
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                           colors: [
-                            const Color(0xffa740d6),
                             const Color(0xffd64086),
+                            const Color(0xffa740d6),
                           ]
                       ),
                       borderRadius: BorderRadius.circular(30),
