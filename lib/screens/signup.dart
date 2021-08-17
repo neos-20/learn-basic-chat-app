@@ -17,6 +17,7 @@ class _SignUpState extends State<SignUp> {
 
   TextEditingController _email = new TextEditingController();
   TextEditingController _password = new TextEditingController();
+  TextEditingController _username = new TextEditingController();
 
   bool isLoading = false;
 
@@ -57,10 +58,15 @@ class _SignUpState extends State<SignUp> {
                   Form(
                     key: formKey,
                       child: Column(
-                        children: [/*TextField(
+                        children: [TextField(
                       style: inputTextStyle(),
                       decoration: textFieldDecoration("username"),
-                  ),*/
+                            onChanged: (value) {
+                              setState(() {
+                                _username.text = value;
+                              });
+                            }
+                  ),
                       TextFormField(
                         validator: (val){
                           return RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(val!) ?
