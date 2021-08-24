@@ -21,3 +21,14 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+
+
+
+
+<a href="https://github.com/neos-20/learn-basic-chat-app/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=neos-20/learn-basic-chat-app" />
+</a>
+
+Made with [contributors-img](https://contrib.rocks).
